@@ -104,24 +104,39 @@
 # ✦ You can supply a second parameter to enumerate to specify the number from which to begin counting (zero is the default).
 
 
-# 1.5. Use zip to Process Iterators in Parallel
+# 1.5. Use ZIP to Process Iterators in Parallel
+
+# names = ["Cecilia", "Lise", "Marie"]
+# counts = [len(n) for n in names]
 #
+# longest_name = None
+# max_count = 0
+# for i in range(len(names)):
+#     count = counts[i]
+#     if count > max_count:
+#         longest_name = names[i]
+#         max_count = count
+#
+# print(longest_name)
 
-names = ["Cecilia", "Lise", "Marie"]
-counts = [len(n) for n in names]
-print(counts)
-longest_name = None
-max_count = 0
-for i in range(len(names)):
-    count = counts[i]
-    if count > max_count:
-        longest_name = names[i]
-        max_count = count
+#The problem is that this whole loop statement is visually noisy.
 
-print(longest_name)
+# To make this code clearer, Python provides the zip built-in function.
+# zip wraps two or more iterators with a lazy generator.
 
 
+# names = ["Andrey", "Blagovesta", "Boris", "Georgy"]
+# counts = [len(n) for n in names]
+#
+# longest_name = None
+# max_count = 0
+#
+# for name, count in zip(names, counts):
+#     if count > max_count:
+#         longest_name = name
+#         max_count = count
 
+# print(longest_name)
 
 
 
