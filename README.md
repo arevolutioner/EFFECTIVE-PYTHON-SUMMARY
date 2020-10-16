@@ -3,7 +3,7 @@ This book's summary provides insight into the Pythonic way of writing programs: 
 
 Brett Slatkin. Effective Python: 90 Specific Ways to Write Better Python, Second Edition (Nazeer Hussain Shaik's Library) (Kindle Locations 229-231). 
 
- #EFFECTIVE PYTHON SUMMARY
+# EFFECTIVE PYTHON SUMMARY
 
 # 1.PYTHONIC THINKING
 
