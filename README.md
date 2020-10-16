@@ -25,46 +25,44 @@ default text encoding. Explicitly pass the encoding parameter to open if you wan
 
 # 1.2. Prefer Interpolated F-Strings Over C-style Format Strings and str.format
 #
-# f_string = f'{key:<10} = {value:.2f}'
-# c_tuple = '%-10s = %.2f' % (key, value)
-# str_args = '{:<10} = {:.2f}' . format (key, value)
-#
-#
-# str_kw = '{key:<10} = {value:.2f}' . format (key = key,
-# value = value)
-# c_dict = '%(key)-10s = %(value).2f' % { 'key' : key,
-# 'value' : value}
-# assert c_tuple == c_dict == f_string
-# assert str_args == str_kw == f_string
+f_string = f'{key:<10} = {value:.2f}'
+c_tuple = '%-10s = %.2f' % (key, value)
+str_args = '{:<10} = {:.2f}' . format (key, value)
+
+str_kw = '{key:<10} = {value:.2f}' . format (key = key,
+value = value)
+c_dict = '%(key)-10s = %(value).2f' % { 'key' : key,'value' : value}
+assert c_tuple == c_dict == f_string
+assert str_args == str_kw == f_string
 
 # Things to Remember
-# ✦ C-style format strings that use the % operator suffer from a variety of gotchas and verbosity problems.
-# ✦ The str.format method introduces some useful concepts in its formatting
-# specifiers mini language, but it otherwise repeats the mistakes of C-style format strings and should be avoided.
-# ✦ F-strings are a new syntax for formatting values into strings that solves the biggest problems with
-# C-style format strings.
-# ✦ F-strings are succinct yet powerful because they allow for arbitrary Python expressions to be
-# directly embedded within format specifiers.
-#
+✦ C-style format strings that use the % operator suffer from a variety of gotchas and verbosity problems.
+✦ The str.format method introduces some useful concepts in its formatting
+specifiers mini language, but it otherwise repeats the mistakes of C-style format strings and should be avoided.
+✦ F-strings are a new syntax for formatting values into strings that solves the biggest problems with
+C-style format strings.
+✦ F-strings are succinct yet powerful because they allow for arbitrary Python expressions to be
+ directly embedded within format specifiers.
+
 
 # 1.3. Write Helper Functions Instead of Complex Expressions
 #
-# green_str = my_values.get( 'green' , [ '' ])
-# if green_str[ 0 ]:
-# green = int (green_str[ 0 ])
-# else :
-# green = 0
-#
-# def get_first_int(values, key, default = 0 ):
-# found = values.get(key, [ '' ])
-# if found[ 0 ]:
-# return int (found[ 0 ])
-# return default
+green_str = my_values.get( 'green' , [ '' ])
+if green_str[ 0 ]:
+green = int (green_str[ 0 ])
+else :
+green = 0
+
+def get_first_int(values, key, default = 0 ):
+found = values.get(key, [ '' ])
+if found[ 0 ]:
+return int (found[ 0 ])
+return default
 
 # Things to Remember
-# ✦ Python’s syntax makes it easy to write single-line expressions that are overly complicated and difficult to read.
-# ✦ Move complex expressions into helper functions, especially if you need to use the same logic repeatedly.
-# ✦ An if / else expression provides a more readable alternative to using the Boolean operators or and and in expressions.
+✦ Python’s syntax makes it easy to write single-line expressions that are overly complicated and difficult to read.
+✦ Move complex expressions into helper functions, especially if you need to use the same logic repeatedly.
+✦ An if / else expression provides a more readable alternative to using the Boolean operators or and and in expressions.
 
 
 # 1.3. Prefer Multiple Assignment Unpacking Over Indexing
