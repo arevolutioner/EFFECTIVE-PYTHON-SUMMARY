@@ -3,25 +3,25 @@ This book's summary provides insight into the Pythonic way of writing programs: 
 
 Brett Slatkin. Effective Python: 90 Specific Ways to Write Better Python, Second Edition (Nazeer Hussain Shaik's Library) (Kindle Locations 229-231). 
 
- EFFECTIVE PYTHON SUMMARY
+ #EFFECTIVE PYTHON SUMMARY
 
 # 1.PYTHONIC THINKING
 
 # 1.1. Know the Differences Between bytes and str
 #
-#To convert Unicode data to binary data, you must call the encode method of str .
-#To convert binary data to Unicode data, you must call the decode method of bytes .
+To convert Unicode data to binary data, you must call the encode method of str .
+To convert binary data to Unicode data, you must call the decode method of bytes .
 
 
-# ✦ bytes contains sequences of 8-bit values, and str contains sequences of Unicode code
-# points.
-# ✦ Use helper functions to ensure that the inputs you operate on are the type of character sequence that you
-# expect (8-bit values, UTF-8-encoded strings, Unicode code points, etc).
-# ✦ bytes and str instances can’t be used together with operators (like > , == , + , and % ).
-# ✦ If you want to read or write binary data to/from a file, always open the file using a binary mode
-# (like 'rb' or 'wb' ).
-# ✦ If you want to read or write Unicode data to/from a file, be careful about your system’s
-# default text encoding. Explicitly pass the encoding parameter to open if you want to avoid surprises.
+ ✦ bytes contains sequences of 8-bit values, and str contains sequences of Unicode code
+points.
+✦ Use helper functions to ensure that the inputs you operate on are the type of character sequence that you
+expect (8-bit values, UTF-8-encoded strings, Unicode code points, etc).
+✦ bytes and str instances can’t be used together with operators (like > , == , + , and % ).
+ ✦ If you want to read or write binary data to/from a file, always open the file using a binary mode
+ (like 'rb' or 'wb' ).
+✦ If you want to read or write Unicode data to/from a file, be careful about your system’s
+default text encoding. Explicitly pass the encoding parameter to open if you want to avoid surprises.
 
 # 1.2. Prefer Interpolated F-Strings Over C-style Format Strings and str.format
 #
