@@ -296,20 +296,20 @@
 # }
 # print (baby_names)
 
-votes = {
-'otter' : 1281 ,
-'polar bear' : 587 ,
-'fox' : 863 ,
-}
-
-def populate_ranks(votes, ranks):
-    names = list(votes.keys())
-    names.sort(key=votes.get, reverse=True)
-    for i, name in enumerate(names, 1):
-        ranks[name] = i
-
-def get_winner(ranks):
-    return next(iter(ranks))
+# votes = {
+# 'otter' : 1281 ,
+# 'polar bear' : 587 ,
+# 'fox' : 863 ,
+# }
+#
+# def populate_ranks(votes, ranks):
+#     names = list(votes.keys())
+#     names.sort(key=votes.get, reverse=True)
+#     for i, name in enumerate(names, 1):
+#         ranks[name] = i
+#
+# def get_winner(ranks):
+#     return next(iter(ranks))
 
 
 # def get_winner(ranks):
@@ -383,7 +383,7 @@ def get_winner(ranks):
 # ✦ When the setdefault method of dict seems like the best fit for your problem, you should consider using defaultdict instead.
 
 
-# 2.7.Prefer defaultdict Over setdefault to Handle Missing Items in Internal State
+# 2.7.Prefer default dict Over setdefault to Handle Missing Items in Internal State
 #
 
 # visits = {
@@ -400,6 +400,115 @@ def get_winner(ranks):
 #     visits[ 'Japan'] = japan = set ()
 # japan.add( 'Kyoto' )
 # print (visits)
+#
+# Things to Remember
+# ✦ If you’re creating a dictionary to manage an arbitrary set of potential keys, then you should prefer using a default dict instance
+# from the collections built-in module if it suits your problem.
+# ✦ If a dictionary of arbitrary keys is passed to you, and you don’t control its creation,
+# then you, and you don’t control its creation,
+# then you should prefer the get method to access its items. However,
+# it’s worth considering using the setdefault method for
+# the few situations in which it leads to shorter code.
+#
+
+# 2.8. Know How to Construct Key-Dependent Default Values with __missing__
+#
+# Things to Remember
+# ✦ The setdefault method of dict is a bad fit when creating the default value has high
+# computational cost or may raise exceptions.
+# ✦ The function passed to defaultdict must not require any arguments, which makes it impossible to
+# have the default value depend on the key being accessed.
+# ✦ You can define your own dict subclass with a __missing__ method in order to construct default values that must know which key was being accessed.
+
+
+
+# 3. FUNCTIONS
+
+# 3.1. Never Unpack More Than Three Variables When Functions Return Multiple Values
+
+# Things to Remember
+# ✦ You can have functions return multiple values by putting them in a
+# tuple and having the caller take advantage of Python’s unpacking syntax.
+# ✦ Multiple return values from a function can also be unpacked by catch-all starred expressions.
+# ✦ Unpacking into four or more variables is error prone and should be avoided;
+# instead, return a small class or namedtuple instance.
+
+# 3.1. Prefer Raising Exceptions to Returning None
+
+# Things to Remember
+# ✦ Functions that return None to indicate special meaning are error prone because
+# None and other values (e.g., zero, the empty string) all evaluate to False in conditional expressions.
+# ✦ Raise exceptions to indicate special situations instead of returning None .
+# Expect the calling code to handle exceptions properly when they’re documented.
+# ✦ Type annotations can be used to make it clear that a function will never return the value None , even in special situations.
+
+# def careful_divided(a:float, b: float):
+#     """ Divides a by b,
+#     Raises:
+#         ValueError: When the inputs cannot be divided
+#     """
+#     try:
+#         return a/b
+#     except ZeroDivisionError as e:
+#         raise ValueError('Invalid Inputs')
+#
+#
+# result = careful_divided(4,2)
+# print(result)
+
+# 3.2. Know How Closures Interact with Variable Scope
+#
+# def sort_priority(values, group):
+#     def helper(x):
+#         if x in group:
+#             return 0, x
+#         return 1, x
+#     values.sort(key = helper)
+#
+# numbers = [ 8 , 3 , 1 , 2 , 5 , 4 , 7 , 6 ]
+# group = { 2 , 3 , 5 , 7 }
+#
+# sort_priority(numbers, group)
+# print(numbers)
+#
+# Things to Remember
+# ✦ Closure functions can refer to variables from any of the scopes in which they were defined.
+# ✦ By default, closures can’t affect enclosing scopes by assigning variables.
+# ✦ Use the nonlocal statement to indicate when a closure can modify a variable in its enclosing scopes.
+# ✦ Avoid using nonlocal statements for anything beyond simple functions.
+#
+# 3.3. Reduce Visual Noise with Variable Positional Arguments
+#
+# Things to Remember
+# ✦ Functions can accept a variable number of positional arguments by using *args in the def statement.
+# ✦ You can use the items from a sequence as the positional arguments for a function with the * operator.
+# ✦ Using the * operator with a generator may cause a program to run out of memory and crash.
+# ✦ Adding new positional parameters to functions that accept *args can introduce hard-to-detect bugs.
+#
+# 3.4. Provide Optional Behavior with Keyword Arguments
+#
+#Things to Remember
+# ✦ Function arguments can be specified by position or by keyword.
+# ✦ Keywords make it clear what the purpose of each argument is
+# when it would be confusing with only positional arguments.
+# ✦ Keyword arguments with default values make Things to Remember
+# ✦ Function arguments can be specified by position or by keyword.
+# ✦ Keywords make it clear what the purpose of each argument is when it would be confusing with only positional arguments.
+# ✦ Keyword arguments with default values make it easy to add new behaviors
+# to a function without needing to migrate all existing callers.
+# ✦ Optional keyword arguments should always be passed by keyword instead of by position.
+#
+#3.5. Use None and Docstrings to Specify Dynamic Default Arguments
+
+#Things to Remember
+# ✦ A default argument value is evaluated only once:
+# during function definition at module load time. This can cause odd behaviors for dynamic values
+# (like {} , [] , or datetime.now() ).
+# ✦ Use None as the default value for any keyword argument that has a dynamic value.
+# Document the actual default behavior in the function’s docstring.
+# ✦ Using None to represent keyword argument default values also works correctly with type annotations.
+
+#3.6. Enforce Clarity with Keyword-Only and Positional-Only Arguments
 
 
 
@@ -415,6 +524,21 @@ def get_winner(ranks):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Brett Slatkin. Effective Python: 90 Specific Ways to Write Better Python, Second Edition (Nazeer Hussain Shaik's Library) (Kindle Locations 3187-3194).
 
 
 
